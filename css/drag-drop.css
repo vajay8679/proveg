@@ -1,0 +1,25 @@
+.sortable{ 
+list-style-type: none;
+ margin: 0;
+ padding: 0; 
+ margin-bottom: 10px;
+ min-height:100px;
+ padding:5px 0;
+ }
+ .customizer_layout {
+  background-color:#ccc;
+ }
+ .sortable li {
+ margin: 5px;
+ padding: 5px;
+ width: 215px; 
+ background-color:#fff;
+ border:1px solid #000;
+ text-align:center;
+ }
+ 
+ #customize-control-businesso_option-front_page_data label , #customize-control-businesso_option-layout_textbox_disable label
+ {
+ display:none !important;
+ }
+ #customize-control-appointment_options-theme_color  input { display:none;}

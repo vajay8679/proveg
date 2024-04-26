@@ -1,0 +1,114 @@
+  /* jssor slider bullet navigator skin 03 css */
+        /*
+        .jssorb03 div           (normal)
+        .jssorb03 div:hover     (normal mouseover)
+        .jssorb03 .av           (active)
+        .jssorb03 .av:hover     (active mouseover)
+        .jssorb03 .dn           (mousedown)
+        */
+        .jssorb03 {
+            position: absolute;
+        }
+
+            .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av {
+                position: absolute;
+                /* size of bullet elment */
+                width: 21px;
+                height: 21px;
+                text-align: center;
+                line-height: 22px;
+                color: white;
+                font-size: 12px;				
+                background: url('wp-content/themes/ecotheme/images/b03.png') no-repeat;
+                overflow: hidden;
+                cursor: pointer;
+            }
+
+            .jssorb03 div {
+                background-position: -5px -4px;
+            }
+
+                .jssorb03 div:hover, .jssorb03 .av:hover {
+                    background-position: -35px -4px;
+                }
+
+            .jssorb03 .av {
+                background-position: -65px -4px;
+            }
+
+            .jssorb03 .dn, .jssorb03 .dn:hover {
+                background-position: -95px -4px;
+            }
+
+        /* jssor slider arrow navigator skin 05 css */
+        /*
+        .jssora05l                  (normal)
+        .jssora05r                  (normal)
+        .jssora05l:hover            (normal mouseover)
+        .jssora05r:hover            (normal mouseover)
+        .jssora05l.jssora05ldn      (mousedown)
+        .jssora05r.jssora05rdn      (mousedown)
+        */
+        .jssora05l, .jssora05r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            background: url('wp-content/themes/ecotheme/images/a17.png') no-repeat;
+            overflow: hidden;
+        }
+
+        .jssora05l {
+            background-position: -10px -40px;
+        }
+
+        .jssora05r {
+            background-position: -70px -40px;
+        }
+
+        .jssora05l:hover {
+            background-position: -130px -40px;
+        }
+
+        .jssora05r:hover {
+            background-position: -190px -40px;
+        }
+
+        .jssora05l.jssora05ldn {
+            background-position: -250px -40px;
+        }
+
+        .jssora05r.jssora05rdn {
+            background-position: -310px -40px;
+        }
+
+        /* jssor slider thumbnail navigator skin 09 css */
+
+        .jssort09-600-45 .p {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 780px;
+            height: 45px;
+        }
+
+        .jssort09-600-45 .t {
+            font-weight: normal;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            color: #fff;
+            line-height: 45px;
+            font-size: 15px;
+            padding-left: 15px;
+            font-weight: bold;
+        }
+		
+		#whatsapp_chat_widget #wa-widget-send-button{
+			  right: 20px !important;
+             left: inherit;
+		}

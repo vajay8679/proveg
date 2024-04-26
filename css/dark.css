@@ -1,0 +1,43 @@
+#wrapper{
+ background-color:#080F1D;
+}
+.home_services h3 { color:#fff; }
+.text-center h1 { color:#fff; }
+.home_services {
+    border: 1px solid rgba(15, 15, 15, 0.07);
+    background-color: #0F192B;
+}
+.about-feature-col{
+    border: 1px solid rgba(15, 15, 15, 0.07);
+    background-color: #0F192B;
+}
+.about-feature-col h3 { color:#fff; }
+.about-feature-col p { color:#929292; }
+.home_services p { color:#929292; }
+.client-logos img {
+    border: 1px solid #fff;
+}
+.about-section h2 {
+    color: #fff;
+}
+.blog-column {
+    background-color: #0F192B!important;
+}
+.title {
+    color:#fff;
+}
+.title-two{
+    color:#fff;
+}
+.about-feature{
+    background-color: #080F1D;
+    border: 0px solid #e5e5e5;
+}
+.control-label{ color:#929292; }
+p.sed-para{color:#fff;  }
+p.para1{ color:#929292 !important; }
+.address-more h4{ color:#fff; }
+.address-more p{ color:#929292; }
+.address-left h4{ color:#fff; }
+.address-left p{ color:#929292; }
+.address-left p a{ color:#929292; }

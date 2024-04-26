@@ -1,0 +1,34 @@
+/*NotoSerif Fonts*/
+@font-face {
+    font-family: 'MerriweatherRegular';
+    src: url('Merriweather-Regular.eot');
+    src: url('Merriweather-Regular.eot?#iefix') format('embedded-opentype'),
+         /* url('Merriweather-Regular.woff') format('woff'), */
+         url('Merriweather-Regular.ttf') format('truetype'),
+         url('Merriweather-Regular.svg#MerriweatherRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MerriweatherBold';
+    src: url('Merriweather-Bold.eot');
+    src: url('Merriweather-Bold.eot?#iefix') format('embedded-opentype'),
+         /* url('Merriweather-Boldwoff') format('woff'), */
+         url('Merriweather-Bold.ttf') format('truetype'),
+         url('Merriweather-Bold.svg#MerriweatherBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'FiraSansRegular';
+    src: url('FiraSans-Regular.eot');
+    src: url('FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
+         /* url('FiraSans-Regular.woff') format('woff'), */
+         url('FiraSans-Regular.ttf') format('truetype'),
+         url('FiraSans-Regular.svg#FiraSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
