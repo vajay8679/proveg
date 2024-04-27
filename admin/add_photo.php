@@ -364,9 +364,7 @@ include('header.php');
 
 </table>
 
-
-
-            </div>
+ </div>
 
             
 

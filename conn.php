@@ -60,6 +60,12 @@ $username = "u295964305_proveg";
 $password = "4?mIRqI5SPs";
 $database = "u295964305_proveg";
 
+
+// $host = "localhost";
+// $username = "root";
+// $password = "root";
+// $database = "proveg";
+
 // Create connection
 $conn = new mysqli($host, $username, $password, $database);
 

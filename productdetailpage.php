@@ -63,10 +63,21 @@ if ($conn) {
                     <?php
                         if(isset($_GET['proid']) && !empty($_GET['proid'])) {
                             $stv = $_GET['proid'];
+                            
                             $productdata=[];
                             if ($conn) {
-                                $sql = "SELECT * from products where oid='$stv'";
-                                $productdata =  $conn->query($sql);  
+                                // $sql = "SELECT * from products where oid='$stv'";
+                                // $productdata =  $conn->query($sql); 
+                                $sql = "SELECT * from product_cat where slug='$stv'";
+                                $productCatdetail =  $conn->query($sql);  
+                            //    $productId =  $productCatdetail['id'];
+                            $oid = '';
+                            foreach($productCatdetail as $productalls){
+                                $oid=$productalls['id'];
+                            }
+
+                                $sql = "SELECT * from products where oid='$oid'";
+                                $productdata =  $conn->query($sql); 
                             }
                         } else {
                             echo "This Page Not Found 404 Error";
@@ -77,7 +88,18 @@ if ($conn) {
                              
                              $productdetail=[];
                              if ($conn) {
-                                 $sql = "SELECT * from products where oid='$stv'";
+                                //  $sql = "SELECT * from products where oid='$stv'";
+                                //  $productdetail =  $conn->query($sql); 
+                                $sql = "SELECT * from product_cat where slug='$stv'";
+                                $productCatdetail =  $conn->query($sql);  
+                            //    $productId =  $productCatdetail['id'];
+                            $oid = '';
+                            foreach($productCatdetail as $productalls){
+                                $oid=$productalls['id'];
+                            }
+                           
+
+                                $sql = "SELECT * from products where oid='$oid'";
                                  $productdetail =  $conn->query($sql);  
                              }
                              foreach($productdetail as $productall){
@@ -86,11 +108,12 @@ if ($conn) {
                                  $titleall=$productall['title'];
                                  $descriptionall=$productall['description'];
                                  $thumball=$productall['thumb'];
+                                 
                         ?>
                         <div class="col-md-4 " style="margin-bottom: 20px;">
                             <div class="shadow" style="margin-bottom: 20px;">
                                 <div class="space-between-div" style="padding: 20px;">
-                                    <a class="oneline" href="alldetailproduct.php?proid=<?php echo $idall; ?>">
+                                    <a class="oneline" href="alldetailproduct.php?proid=<?php echo $stv; ?>">
                                         <img fetchpriority="high" decoding="async" class="homepage_img marg shadow" title="<?php echo $titleall; ?>" src="admin/upload/product/images/thumb/<?php echo $thumball ?>" width="400" height="218" />
                                         <h1 class="text-center text-ellipsis"><?php echo $titleall; ?></h1>
                                     </a>

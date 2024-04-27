@@ -1,8 +1,28 @@
 <?php include('./headernew.php');
+
 $productdata=[];
+$search_query = isset($_GET['search']) ? $_GET['search'] : '';
+
 if ($conn) {
-	$sql = "SELECT * FROM product_cat WHERE parent_id='0' and (id in(select parent_id from product_cat) OR  id in(select oid from products)) ORDER BY `title` ASC";
-	$productdata =  $conn->query($sql);  
+    $sql = "SELECT * FROM product_cat WHERE parent_id >=0 AND (id IN (SELECT parent_id FROM product_cat) OR id IN (SELECT oid FROM products))";
+
+    // $sql = "SELECT * FROM product_cat WHERE parent_id >=0 and (id in(select parent_id from product_cat) OR  id in(select oid from products)) ORDER BY `title` ASC";
+    // Add search condition if a search query is provided
+    if (!empty($search_query)) {
+        // Break down the search query into individual words
+        $keywords = explode(" ", $search_query);
+        $search_conditions = [];
+        foreach ($keywords as $keyword) {
+            // Add each word as a condition to match against titles
+            $search_conditions[] = "LOWER(title) LIKE '%" . strtolower($keyword) . "%'";
+        }
+        // Combine all conditions with OR to search for any word match
+        $sql .= " AND (" . implode(" OR ", $search_conditions) . ")";
+    }
+
+    $sql .= " ORDER BY title ASC";
+
+    $productdata = $conn->query($sql);
 }
 ?>
 <style>
@@ -63,16 +83,26 @@ if ($conn) {
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-lg-12">
+                            <form action="" method="GET">
+                                <input type="text" name="search" placeholder="Search product here" value="<?php echo htmlentities($search_query); ?>">
+                                <button type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br>  
+                    <div class="row">
                         <?php
                         foreach($productdata as $product){
                             $id = $product['id'];
                             $img = $product['thumb'];
                             $title = $product['title'];
+                            $slug = $product['slug'];
                         ?>
                         <div class="col-md-4 " style="margin-bottom: 20px;">
                             <div class="shadow" style="margin-bottom: 20px;">
                                 <div class="space-between-div" style="padding: 20px;">
-                                    <a class="oneline" href="productdetailpage.php?proid=<?php echo $id; ?>">
+                                    <a class="oneline" href="productdetailpage.php?proid=<?php echo $slug; ?>">
                                         <img fetchpriority="high" decoding="async" class="homepage_img marg shadow" title="<?php echo $title; ?>" src="admin/upload/product/images/thumb/<?php echo $img;?>" width="400" height="218" />
                                         <h1 class="text-center text-ellipsis"><?php echo $title; ?></h1>
                                     </a>

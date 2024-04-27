@@ -19,6 +19,7 @@ if(isset($_POST['submit_category']))    {
 
 $parent     = $_REQUEST['parent'];
 $name     = trim($_REQUEST['name']);
+$slug     = preg_replace('/[^A-Za-z0-9-]+/', '-', $name); 
 
 $get_exist =mysqli_query($con,"select title FROM product_cat where title='$name'");
 if(mysqli_num_rows($get_exist) < 1)
@@ -36,7 +37,7 @@ if(is_dir("upload/product/".$name) || mkdir("upload/product/$name",0777,true))
 $brochure = date('YmdHis').'_'.str_replace(' ','_',$_FILES['imagefile']['name']);
 move_uploaded_file($_FILES['imagefile']['tmp_name'],'upload/product/'.$name.'/'.$brochure);
 
-$sql1 = "insert into product_cat( `parent_id`, `title`,`thumb`,`brochure`) values('$parent','$name','$url','$brochure')";
+$sql1 = "insert into product_cat( `parent_id`, `title`,`slug`,`thumb`,`brochure`) values('$parent','$name','$slug','$url','$brochure')";
  
 $res = mysqli_query($con,$sql1);
 //mysqli_close($conn);
@@ -55,6 +56,9 @@ $res = mysqli_query($con,$sql1);
 	$idd=$_POST['idd'];
 	$parent     = $_REQUEST['parent'];
 	$name     = trim($_REQUEST['name']);
+  // Convert the string to lowercase
+  $slug     = preg_replace('/[^A-Za-z0-9-]+/', '-', $name); 
+
 	$old_name = $_REQUEST['old_name'];
 	$thumb_hidden = $_REQUEST['thumb_hidden'];
 	$brochure_hidden = $_REQUEST['brochure_hidden'];
@@ -78,12 +82,16 @@ $photo = date('YmdHis').'_'.str_replace(' ','_',$_FILES['filename1']['name']);
 $filename = compress_image($_FILES["filename1"]["tmp_name"], '/home/provegengineerin/public_html/admin/upload/product/images/thumb/'.$photo, 80);
 move_uploaded_file($_FILES['filename1']['tmp_name'],'upload/product/images/'.$photo);
 }
+
 //echo "upload/product/".$old_name,"upload/product/".$name;
-	if(is_dir("upload/product/".$name) || rename("upload/product/".$old_name,"upload/product/".$name))	
-		{
+	// if(is_dir("upload/product/".$name) || rename("upload/product/".$old_name,"upload/product/".$name))	
+	// 	{
+      // print_r($slug);die;
+     
 			if(isset($_FILES['imagefile']) && $_FILES['imagefile']['name']!='')
 			{
 			//Uploading Brochure
+      
 			$brochure = date('YmdHis').'_'.str_replace(' ','_',$_FILES['imagefile']['name']);
 			move_uploaded_file($_FILES['imagefile']['tmp_name'],'upload/product/'.$name.'/'.$brochure);
 			}
@@ -97,14 +105,17 @@ move_uploaded_file($_FILES['filename1']['tmp_name'],'upload/product/images/'.$ph
 			$brochure = date('YmdHis').'_'.str_replace(' ','_',$_FILES['imagefile']['name']);
 			move_uploaded_file($_FILES['imagefile']['tmp_name'],'upload/product/'.$name.'/'.$brochure);
 			}
+     
+
 			//echo "update product_cat SET title='$name', parent_id='$parent',thumb='$photo',brochure='$brochure' where id='$idd'"; //die;
-			$add=mysqli_query($con,"update product_cat SET title='$name', parent_id='$parent',thumb='$photo',brochure='$brochure' where id='$idd'");
+			$add=mysqli_query($con,"update product_cat SET title='$name',slug='$slug', parent_id='$parent',thumb='$photo',brochure='$brochure' where id='$idd'");
 			if($add)
 			{
 				echo "Product Category Succesfully updated";
 			}
-			 else { echo "Try again"; }
-		}
+    // }
+		// 	 else { echo "Try again"; }
+		
 } 
 		
 function compress_image($source_url, $destination_url, $quality) {
@@ -179,6 +190,7 @@ include('header.php');
 if(isset($_REQUEST['rst']))
 {
 	
+  
 $rst=$_GET['rst'];
 $query ="select * FROM product_cat where id='$rst'";
 
@@ -201,19 +213,35 @@ $brochure=$xd['brochure'];
       <input name="brochure_hidden" type="hidden" value="<?php echo $brochure; ?>"/>
       <tr>
         <td>Parent: </td>
-        <td><select name="parent" style="width:200px;">
+        
+        <td>
+          <select name="parent" style="width:200px;">
             <option value="0">Root</option>
             <?php
-			$query ="select * FROM product_cat";
+    // Assuming you have already established a database connection
+    // $connection = mysqli_connect("localhost", "root", "", "proveg");
 
-			$res=mysqli_query($query);
-			
-			while($xd=mysqli_fetch_array($res)){
-				if($xd['id']==$parent_id) $selected= 'selected="selected"';  else $selected='';
-            echo '<option value="'.$xd['id'].'" '.$selected.'>'.$xd['title'].'</option>';
-            
-             } ?>
-          </select></td>
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        exit();
+    }
+
+    $query = "SELECT * FROM product_cat";
+    $res = mysqli_query($con, $query);
+    
+    while ($xd = mysqli_fetch_array($res)) {
+        $selected = ($xd['id'] == $parent_id) ? 'selected="selected"' : '';
+        echo '<option value="'.$xd['id'].'" '.$selected.'>'.$xd['title'].'</option>';
+    }
+
+    // Close the connection
+    // mysqli_close($con);
+?>
+
+          </select>
+        </td>
+
       </tr>
       
       <tr>
@@ -246,11 +274,8 @@ $brochure=$xd['brochure'];
       
     </table>
   </form>
-  <?php
-            }
-			else
-			{
-            ?>
+  <?php } else { ?>
+
   <h1>Add Product Category</h1>
   <form action="" enctype="multipart/form-data" method="post">
     <table width="50%" border="0" cellspacing="0" cellpadding="0">
@@ -284,7 +309,7 @@ $brochure=$xd['brochure'];
           <input type="file" name="imagefile" required="required"/></td>
       </tr>
       <tr>
-        <td>Category: </td>
+        <td>Title: </td>
         <td><input name="name" type="text" style="width:233px;" value="" required/></td>
       </tr>
       <tr>

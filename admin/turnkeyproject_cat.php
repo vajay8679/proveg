@@ -177,7 +177,7 @@ $title=$xd['title'];
           </select></td>
       </tr>
       <tr>
-        <td>Category: </td>
+        <td>Title: </td>
         <td><input name="name" type="text" style="width:233px;" value="" required/></td>
       </tr>
       <tr>

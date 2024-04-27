@@ -37,23 +37,37 @@ Please enter the details below and submit:</center>
 </h5>
                                   
 <form id="myForm" action="process_form.php" method="post" onSubmit="return validations()">
-<div class="form-group">
-<input Style="padding: 3px 0 3px 10px; margin-top: 10px;" class="form-control" value="I am interested in Full Line." type="text" />
+<!-- <div class="form-group"> -->
+<div class="hlpfrm_grup">
+<div class="hlpfrm_txt">Interested In</div>
+<div class="hlpfrm_field">
+  <!-- <input Style="padding: 3px 0 3px 10px; margin-top: 10px;" class="form-control" value="I am interested in Full Line." type="text" /> -->
+  <input class="hlpfrm_100"   value="I am interested in Full Line."  type="text" />
+</div>
 <input type="hidden" name="pghd" value="22" />
 <input type="hidden" name="catnamehd" value="Full Line" />
 </div>
-                                    <div class="form-group">
-                                         <label for="nameTxt">Name:</label>
-                                        <input Style="padding: 3px 0 3px 10px;" class="form-control" name="nameTxt" id="nameTxt" placeholder="Name" type="text" /></div>
-                                    <div class="form-group">
-                                    <label for="nameTxt">Company name:</label>
-                                        <input Style="padding: 3px 0 3px 10px;" class="form-control" name="conameTxt" id="conameTxt" placeholder="Company Name" type="text" /></div>
-                                    <div class="form-group">
-                                        <label for="nameTxt">Address:</label>
-                                        <input Style="padding: 3px 0 3px 10px;" class="form-control" name="addressTxt" id="addressTxt" placeholder="Address" type="text" /></div>
-                                     <div class="form-group"> 
-                                     <label for="nameTxt">Select country:</label>
-                                        <select id="countrylist" name="countrylist" style="width: 100%; color:#777;">
+
+<div class="hlpfrm_grup">
+<div class="hlpfrm_txt">Name</div>
+<div class="hlpfrm_field"><input class="hlpfrm_100" name="nameTxt" id="nameTxt" placeholder="Name" type="text" /></div>
+</div>
+
+<div class="hlpfrm_grup">
+<div class="hlpfrm_txt">Company Name</div>
+<div class="hlpfrm_field"><input class="hlpfrm_100" name="conameTxt" id="conameTxt" placeholder="Company Name" type="text" /></div>
+</div> 
+
+<div class="hlpfrm_grup">
+<div class="hlpfrm_txt">Address:</div>
+<div class="hlpfrm_field"><input class="hlpfrm_100" name="addressTxt" id="addressTxt" placeholder="Address" type="text" /></div>
+</div> 
+
+<div class="hlpfrm_grup"> 
+<div class="hlpfrm_txt">Select country:</div>
+<div class="hlpfrm_field">
+<!-- <label for="nameTxt">Select country:</label> -->
+<select  class="hlpfrm_100" id="countrylist" name="countrylist">
   <option value="0">Select Country</option>  
   <option value="Afghanistan">Afghanistan</option>
   <option value="Albania">Albania</option>
@@ -350,28 +364,29 @@ Please enter the details below and submit:</center>
   <option value="Zambia">Zambia</option>
   <option value="Zimbabwe">Zimbabwe</option>
   <option value="Other">Other</option>
-</select></div>
-                                    <div class="form-group">
-                                        <label for="nameTxt">Contact No." :</label>
-                                        <input Style="padding: 3px 0 3px 10px;" class="form-control"  name="phoneTxt" id="phoneTxt" placeholder="Contact No. *" type="tel" /></div>
-                                    <div class="form-group">
-                                        <label for="nameTxt">E-mail" :</label>
-                                        <input Style="padding: 3px 0 3px 10px;" class="form-control" name="emailTxt" id="emailTxt" placeholder="E-mail *" type="text" /></div>
-                                        
-                                        
-                                    <div class='form-group'>
-                                         <label for="nameTxt">Requirement Details" :</label>
-                                        <textarea Style='padding: 0 0 0 10px; height:100px;' class='form-control' name='requirementsTxt' id='requirementsTxt' placeholder='Requirement Details *' type='text' ></textarea></div>
-                                    
-                                    <div class="form-group">
-                                    <div class="g-recaptcha" data-sitekey="6Lc4xC0UAAAAACi_TpNixlXnPxzcmaQnQVay4OL4"></div>
+</select></div></div>
 
-                                    </div>
+<div class="hlpfrm_grup">
+<div class="hlpfrm_txt">Contact No.</div>
+<div class="hlpfrm_field"><input class="hlpfrm_100" name="phoneTxt" id="phoneTxt" placeholder="Contact No. *" type="tel" /></div>
+</div>
 
+<div class="hlpfrm_grup">
+<div class="hlpfrm_txt">Your E-mail</div>
+<div class="hlpfrm_field"><input class="hlpfrm_100" name="emailTxt" id="emailTxt" placeholder="E-mail *" type="text" /></div>
+</div>
 
-                                    <div class="form-group text-center">
-                                        <button class="Submit" type="submit">Submit</button>
-                                </form>
+<div class="hlpfrm_grup">
+<div class="hlpfrm_txt">Requirement Details" :</div>
+<div class="hlpfrm_field"><textarea class="hlpfrm_100" name="requirementsTxt" id="requirementsTxt" placeholder='Requirement Details *' rows="5"></textarea></div>
+</div>
+
+<div class="form-group">
+<div class="g-recaptcha" data-sitekey="6Lc4xC0UAAAAACi_TpNixlXnPxzcmaQnQVay4OL4"></div>
+</div>
+<div class="form-group text-center">
+<button class="Submit" type="submit">Submit</button>
+</form>
 </div>
 </div>
 

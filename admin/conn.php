@@ -51,8 +51,9 @@ if (!isset($_SERVER['HTTPS']) || ($_SERVER['HTTPS'] == "off")) {
 #-------------------------------------------------------------------------------
 define('CSS_URL', PROJECT_URL . CSS_DIR);
 
-
 $con = mysqli_connect("localhost","u295964305_proveg","4?mIRqI5SPs","u295964305_proveg");
+
+// $con = mysqli_connect("localhost","root","root","proveg");
 if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();

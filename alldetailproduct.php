@@ -1241,9 +1241,20 @@ include "conn.php";?>
                         <?php
                         if(isset($_GET['proid']) && !empty($_GET['proid'])) {
                             $stv = $_GET['proid'];
+                            
+
                             $productdata=[];
                             if ($conn) {
-                                $sql = "SELECT * from products where id='$stv'";
+
+                                $sql = "SELECT * from product_cat where slug='$stv'";
+                                $productCatdetail =  $conn->query($sql);  
+                            //    $productId =  $productCatdetail['id'];
+                            $oid = '';
+                            foreach($productCatdetail as $productalls){
+                                $oid=$productalls['id'];
+                            }
+                           ;
+                                $sql = "SELECT * from products where oid='$oid'";
                                 $productdata =  $conn->query($sql);  
                             }
                         } else {
@@ -1293,7 +1304,15 @@ include "conn.php";?>
                                                 <?php 
                                             $productdetail=[];
                                             if ($conn) {
-                                                $sql = "SELECT * from products where id='$stv'";
+                                                $sql = "SELECT * from product_cat where slug='$stv'";
+                                $productCatdetail =  $conn->query($sql);  
+                            //    $productId =  $productCatdetail['id'];
+                            $oid = '';
+                            foreach($productCatdetail as $productalls){
+                                $oid=$productalls['id'];
+                            }
+
+                                                $sql = "SELECT * from products where oid='$oid'";
                                                 $productdetail =  $conn->query($sql);  
                                             }
                                             foreach($productdetail as $productall){
@@ -1389,10 +1408,19 @@ include "conn.php";?>
                                                 <?php 
                                             $productdetail=[];
                                             if ($conn) {
-                                                $sql = "SELECT * from products where id='$stv'";
+                                                $sql = "SELECT * from product_cat where slug='$stv'";
+                                                $productCatdetail =  $conn->query($sql);  
+                                            //    $productId =  $productCatdetail['id'];
+                                            $oid = '';
+                                            foreach($productCatdetail as $productalls){
+                                                $oid=$productalls['id'];
+                                            }
+
+                                                $sql = "SELECT * from products where oid='$oid'";
                                                 $productdetail =  $conn->query($sql);  
                                             }
                                             foreach($productdetail as $productall){
+                                                // print_r($productall['url1']);die;
                                                 $idall=$productall['id'];
                                                 $oldall=$productall['oid'];
                                                 $titleall=$productall['title'];
@@ -1420,11 +1448,20 @@ include "conn.php";?>
                                                 $iframe_src = 'https://www.youtube.com/embed/' . $video_id;
                                     
                                                 if (!empty($video_id)) {
+                                                    // print_r($thumball);die;
                                                     ?>
                                                     <div style="margin-bottom: 10px;">
-                                                        <a href="javascript:void(0);" onclick="openVideoPopup('<?php echo $iframe_src; ?>')">
-                                                            <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg" alt="Video Thumbnail" width="300" height="200">
+                                                  
+                                                        <a href="javascript:void(0);" onclick="openVideoPopup('<?php echo $iframe_src; ?>')"> 
+                                                        <!-- <video autoplay="" loop="" controls="" width="300" height="200"> -->
+                                                        <iframe width="300" height="200" src="https://www.youtube.com/embed/<?php echo $video_id; ?>?autoplay=1" frameborder="0" allowfullscreen></iframe>
+                                                        <!-- <source type="video/mp4" src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg"> -->
+                                                        <!-- <img src="admin/upload/product/images/thumb/<?php echo $thumball ?>" alt="Video Thumbnail" width="300" height="200"> -->
+                                                            <!-- <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg" alt="Video Thumbnail" width="300" height="200"> -->
+                                                        <!-- </video> -->
                                                         </a>
+                                                    </div>
+
                                                     </div>
                                                     <?php
                                                 } else {
