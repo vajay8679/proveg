@@ -41,15 +41,46 @@ $sql1 = "insert into product_cat( `parent_id`, `title`,`slug`,`thumb`,`brochure`
  
 $res = mysqli_query($con,$sql1);
 //mysqli_close($conn);
-        if ($res)
-	              {
-	                 echo "Product Category Succesfully add";
-                 } 
-       else { echo "Try again"; }
+      //   if ($res)
+	    //           {
+	    //              echo "Product Category Succesfully add";
+      //            } 
+      //  else { echo "Try again"; }
  
+      if ($res) {
+        // echo '<div class="flash flash-success">
+        //           <i class="fa fa-check"></i>
+        //           Product Category Successfully added.
+        //       </div>';
+        echo '<div class="toast">
+        <div class="toast-content">
+          <i class="uil uil-check toast-check"></i>
+          <div class="message">
+            <span class="message-text text-1">Success</span>
+            <span class="message-text text-2">Your changes has been saved</span>
+          </div>
+        </div>
+        <i class="uil uil-multiply toast-close"></i>
+        <div class="progress"></div>
+      </div>';
+      echo '<script>
+                // Remove toast after 20 seconds
+                setTimeout(function() {
+                    $(".toast").remove();
+                }, 20000); // 20000 milliseconds = 20 seconds
+              </script>';
+              if ($res) {
+                set_time_limit(30);
+            }
+             
+    } else {
+        echo "Try again"; // This message will be displayed without flash animation
+    }
+
 }
- }
+ 
  else { echo 'Product Category already exists.'; }
+}
 }
  else if(isset($_POST['update_category']))
 {
@@ -179,6 +210,145 @@ function DltFunction(id) {
     document.getElementById("demo").innerHTML = txt;
 }
 </script>
+
+<script>
+// // Remove flash message after 3 seconds
+// setTimeout(function() {
+//     $('.flash').remove();
+// }, 20000);
+var toast = document.querySelector(".toast");
+var btn = document.querySelector(".toast-btn");
+var close = document.querySelector(".toast-close");
+var progress = document.querySelector(".progress");
+
+btn.addEventListener("click", () =>{
+  toast.classList.add("active");
+  progress.classList.add("active");
+
+  setTimeout(() =>{
+    toast.classList.remove("active");
+  }, 20000)
+
+  setTimeout(() =>{
+    progress.classList.remove("active");
+  }, 20000)
+})
+
+close.addEventListener("click", () =>{
+  toast.classList.remove("active");
+
+  setTimeout(() =>{
+    progress.classList.remove("active");
+  }, 20000)
+})
+
+</script>
+
+<style>
+
+
+
+.toast{
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  border-radius: 6px;
+  background: #fff;
+  padding: 20px 35px 20px 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-left: 8px solid #40f467;
+  overflow: hidden;
+  transform: translateX(calc(100% + 30px));
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.25, 1.35);
+}
+.toast.active{
+  transform: translateX(0);
+}
+.toast-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toast-check{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  background-color: #40f7;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+}
+.message{
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+.message-text{
+  font-size: 20px;
+  font-weight: 600;
+}
+.text-1{
+  color: #333;
+}
+.text-2{
+  color: #666;
+  font-weight: 400;
+  font-size: 16px;
+}
+.toast-close{
+  position: absolute;
+  top: 10px;
+  right: 150px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.toast-close:hover{
+  opacity: 1;
+}
+.progress{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: #ddd;
+}
+.progress::before{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 90%;
+  width: 90%;
+  background-color: #008000;
+}
+.progress.active::before{
+  animation: progress 25s linear forwards;
+}
+@keyframes progress {
+  100%{
+    right: 90%;
+  }
+}
+.toast-btn{
+  padding: 10px 40px;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  background-color: #008000;
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.toast-btn:hover{
+  background-color: #0fbd35;
+}
+</style>
+
 </head>
 <body>
 <h1 id="head">ProvEngineering</h1>
@@ -320,6 +490,8 @@ $brochure=$xd['brochure'];
       </tr>
     </table>
   </form>
+  <div id="flashMessageContainer"></div>
+
   <?php
 			}
 			?>

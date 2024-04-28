@@ -96,39 +96,69 @@ h1 {
         ?>
             <button class="btn" onclick="filterSelection('<?php echo $id; ?>')"><?php echo $title ?></button>
         <?php } ?>
-    </div>
 
-    <div class="row">
-        <?php
-        $sql = mysqli_query($conn, "SELECT * FROM gallery_image;");
+    </div>
+    <div class="row" id="default_data">
+    <?php 
+   
+    $sq2 = mysqli_query($conn, "SELECT * FROM gallery_menu limit 1");
+    $row = mysqli_fetch_assoc($sq2);
+    $categoryId = $row['id'];
+
+        $sql = mysqli_query($conn, "SELECT * FROM gallery_image where oid = '$categoryId'");
         while ($sql1 = mysqli_fetch_array($sql)) {
             $id = $sql1['id'];
             $oid = $sql1['oid'];
             $img = $sql1['image'];
             $title = $sql1['title'];
             $desc = $sql1['desc'];
-            $category = $sql1['category']; // Assuming 'category' is the column name for category in your database
+            $category = isset($sql1['category']) ? $sql1['category'] : '';     
         ?>
             <div class="col-md-4 <?php echo $category; ?>" style="margin: 0 auto;">
                 <div class="content gallsec">
                     <img src="admin/<?php echo $category . '/' . $img ?>" alt="<?php echo $title ?>" class="img-gallery">
                 </div>
             </div>
-        <?php } ?>
+        <?php } 
+     ?>
+</div>
+    <div class="row" id="imageContainer">
+    <!-- Images will be displayed here -->
     </div>
+    
 </div>
 
 <script>
-filterSelection("all")
-function filterSelection(c) {
-  var x, i;
-  x = document.getElementsByClassName("column");
-  if (c == "all") c = "";
-  for (i = 0; i < x.length; i++) {
-    w3RemoveClass(x[i], "show");
-    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-  }
-}
+    function filterSelection(categoryId) {
+
+      document.getElementById('default_data').style.display = 'none';
+
+        // Make an AJAX request to fetch images based on the selected category
+        $.ajax({
+            url: 'get_images.php',
+            method: 'POST',
+            data: {categoryId: categoryId},
+            success: function(response) {
+                $('#imageContainer').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+    
+            }
+        });
+    }
+</script>
+<script>
+// filterSelection("all")
+// function filterSelection(c) {
+//   var x, i;
+//   x = document.getElementsByClassName("column");
+//   if (c == "all") c = "";
+//   for (i = 0; i < x.length; i++) {
+//     w3RemoveClass(x[i], "show");
+//     if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+//   }
+// }
 
 function w3AddClass(element, name) {
   var i, arr1, arr2;

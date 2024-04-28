@@ -45,12 +45,13 @@ foreach($blogdata as $blog){
 ?>
 
 <header class="entry-header">
+
 <img width="624" height="299" src="admin/<?php echo $img;?>" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" decoding="async" fetchpriority="high" srcset="" sizes="(max-width: 624px) 100vw, 624px" />
             <h1 class="entry-title"><?php echo $title; ?></h1>
                             <div class="comments-link">
         <a href="unlocking-green-energy-exploring-the-power-of-ecostan-90-briquette-machine.html#respond"><span class="leave-reply">Leave a reply</span></a>				</div><!-- .comments-link -->
         </header><!-- .entry-header -->
-<div class="entry-content">
+<!-- <div class="entry-content">
 <h1><strong><?php echo $title; ?></strong></h1>
 <div id="attachment_9465" style="width: 1292px" class="wp-caption alignnone">
 <img decoding="async" aria-describedby="caption-attachment-9465" class="wp-image-9465 " 
@@ -59,7 +60,102 @@ height="1282" srcset="" sizes="(max-width: 1282px) 100vw, 1282px" /><p id="capti
 
 
 <p><?php echo  $description; ?></p>
-        </div>
+        </div> -->
+
+        <div class="entry-content">
+                                <div class="col-sm-10 text-left">
+                                    <div class="right-div">
+                                        <h2 class="heading text-left"><span class="eco-red">PROVEG<sup>®</sup></span>
+                                            <?php echo !empty($title) ? $title : '' ?></h2>
+                                        <h6 class="text-right sm-navi"><a href="products.html">All Products</a> / <span
+                                                class="sm-navi-curr"><?php echo !empty($title) ? $title : '' ?></span></h6>
+                                        <div id="jssor_1"
+                                            style="position: relative; width: 780px; height: 450px; overflow: hidden; visibility: hidden;">
+                                            <!-- Loading Screen -->
+                                            <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+                                                <div
+                                                    style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;">
+                                                </div>
+                                                <div
+                                                    style="position: absolute; display: block; background: url('img/loading.html') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;">
+                                                </div>
+                                            </div>
+                                            <div data-u="slides"
+                                                style="cursor: default; position: relative; top: 0px; left: 0px; width: 780px; height: 450px; overflow: hidden;">
+                                                <?php 
+                                            $productdetail=[];
+                                            if ($conn) {
+
+                                            }
+                                            $sql = "SELECT * FROM blog where id='$stv'";
+                                            // $sql = "SELECT * FROM blog";
+	                                            $blogdata =  $conn->query($sql);  
+
+                                            foreach($blogdata as $productall){
+                                                $idall=$productall['id'];
+                                                $imgall=$productall['image'];
+                                                $titleall=$productall['title'];
+                                                $descriptionall=$productall['description'];
+                                                $url=$blog['url'];
+                                                // $thumball=$productall['thumb'];
+                                            ?>
+                                                <div data-p="112.50" style="display: none;">
+                                                    <img decoding="async" alt="Briquette Machine" data-u="image"
+                                                        src="admin/<?php echo $imgall;?>">
+                                                    <div data-u="thumb"><?php echo !empty($titleall) ? $titleall : '' ?></div>
+                                                </div>
+                                                
+                                                <?php
+                                                    }
+                                                ?>
+
+                                            </div>
+                                            <!-- Thumbnail Navigator -->
+                                            <div data-u="thumbnavigator" class="jssort09-600-45"
+                                                style="position: absolute; bottom: 3px; left: 3px; right: 3px; width: 774px; height: 55px;">
+                                                <div
+                                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; filter: alpha(opacity=40.0); opacity: 0.7;">
+                                                </div>
+                                                <!-- Thumbnail Item Skin Begin -->
+                                                <div data-u="slides" style="cursor: default;">
+                                                    <div data-u="prototype" class="p">
+                                                        <div data-u="thumbnailtemplate" class="t"></div>
+                                                    </div>
+                                                </div>
+                                                <!-- Thumbnail Item Skin End -->
+                                            </div>
+                                            <!-- Bullet Navigator -->
+                                            <div data-u="navigator" class="jssorb03" style="bottom: 20px; right: 16px;">
+                                                <!-- bullet navigator item prototype -->
+                                                <div data-u="prototype" style="width: 21px; height: 21px;">
+                                                    <div data-u="numbertemplate"></div>
+                                                </div>
+                                            </div>
+                                            <!-- Arrow Navigator -->
+                                            <span data-u="arrowleft" class="jssora05l"
+                                                style="top: 0px; left: 8px; width: 40px; height: 40px;"
+                                                data-autocenter="2"></span>
+                                            <span data-u="arrowright" class="jssora05r"
+                                                style="top: 0px; right: 8px; width: 40px; height: 40px;"
+                                                data-autocenter="2"></span>
+                                            <script>
+                                            jssor_1_slider_init();
+                                            </script>
+                                        </div>
+
+                                        <div class="col-md-12 text-left">
+                                            <div class="rgt-a1 marg">
+                                                <p class="text-justify" style="padding-top:10px;">
+                                                    <strong>Process:</strong> 
+                                                    <?php echo  !empty($description) ? $description : ''; ?>
+                                                </p>                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- .entry-content -->
+                            
+
         
 <footer class="entry-meta">
 This entry was posted in <a href="blog.php" rel="category tag">Blog</a>, <a href="blog.php" rel="category tag">Machinery</a> on <a href="blog.php" title="11:01 am" rel="bookmark"><time class="entry-date" datetime="2024-02-20T11:01:35+00:00">February 20, 2024</time></a><span class="by-author"> by <span class="author vcard"><a class="url fn n" href="blog.php" title="View all posts by admin" rel="author">admin</a></span></span>.								</footer><!-- .entry-meta -->
@@ -519,12 +615,21 @@ This entry was posted in <a href="blog.php" rel="category tag">Blog</a>, <a href
         // Generate iframe for embedding YouTube video
 $iframe_src = 'https://www.youtube.com/embed/' . $video_id;
         ?>
-  <a href="javascript:void(0);" onclick="openVideoPopup('<?php echo $iframe_src; ?>')">
-                                    <!-- Display thumbnail or preview image of the video -->
+  <!-- <a href="javascript:void(0);" onclick="openVideoPopup('<?php echo $iframe_src; ?>')">
+                                    
                                    <img src="https://img.youtube.com/vi/Amn6C_Gw8O8/maxresdefault.jpg" alt="Video Thumbnail" width="300" height="200">
-                                </a>
-        <!-- Display iframe for each video -->
-        <?php echo $iframe_html; ?>
+                                </a> -->
+
+                                <div class="embed-responsive embed-responsive-16by9">
+        <a href="#" class="popup-btn" data-toggle="modal" data-src="<?php echo $embedUrl; ?>">
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/<?php echo $video_id; ?>?autoplay=1" frameborder="0" allowfullscreen>
+ <!-- <img src="https://img.youtube.com/vi/<?php echo $videoId; ?>/maxresdefault.jpg" class="img-fluid" alt="Video Thumbnail"> -->
+                    </iframe>
+                    
+                    </a>
+                </div>
+       
+        <?php //echo $iframe_html; ?>
 
         <?php
         }

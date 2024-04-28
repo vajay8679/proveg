@@ -388,7 +388,6 @@
         foreach ($urldata as $url) {
             $id = $url['id'];
             $youtubeUrl = $url['url'];
-            // $thumbnailUrl = $url['url'];
 
             // Extract YouTube video ID from URL
             $videoId = '';
@@ -403,23 +402,11 @@
             <div class="card ">
                 <div class="card-body test">
                     <?php if (!empty($videoId)) { ?>
-                        <!-- <div class="embed-responsive embed-responsive-16by9">
+                        <div class="embed-responsive embed-responsive-16by9">
                             <a href="#" class="popup-btn" data-toggle="modal" data-src="<?php echo $embedUrl; ?>">
-                            <iframe width="300" height="200" src="https://img.youtube.com/vi/<?php echo $videoId; ?>/maxresdefault.jpg?autoplay=1" frameborder="0" allowfullscreen></iframe>
-
                                 <img src="https://img.youtube.com/vi/<?php echo $videoId; ?>/maxresdefault.jpg" class="img-fluid" alt="Video Thumbnail">
                             </a>
-
-                        </div> -->
-
-    <div class="embed-responsive embed-responsive-16by9">
-        <a href="#" class="popup-btn" data-toggle="modal" data-src="<?php echo $embedUrl; ?>">
-    <iframe width="300" height="200" src="https://www.youtube.com/embed/<?php echo $videoId; ?>?autoplay=1" frameborder="0" allowfullscreen>
- <!-- <img src="https://img.youtube.com/vi/<?php echo $videoId; ?>/maxresdefault.jpg" class="img-fluid" alt="Video Thumbnail"> -->
-                    </iframe>
-                    
-                    </a>
-                </div>
+                        </div>
                     <?php } ?>
                 </div>
             </div>
